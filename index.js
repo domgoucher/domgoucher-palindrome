@@ -21,12 +21,19 @@ function Phrase(content) {
 
   // Returns content processed for palindrome testing
   this.processedContent = function processedContent() {
-    return this.processor(this.content);
+    return this.letters().toLowerCase();
+  }
+
+  // Returns the letters in the content.
+  // For example:
+  //   new Phrase("Hello, world!").letters() === "Helloworld"
+  this.letters = function letters() {
+    const lettersRegEx = /[a-z]/gi;
+    return (this.content.match(lettersRegEx) || []).join("");
   }
 
   // Returns true for a palindrome, false otherwise.
   this.palindrome = function palindrome() {
-    
     return this.processedContent() === reverse(this.processedContent());
   }
 
